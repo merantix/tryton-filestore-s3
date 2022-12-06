@@ -42,11 +42,13 @@ def name(id, prefix=''):
 
 
 def get_client():
+    endpoint_url = config.get('database', 'endpoint_url', default=None)
     access_key = config.get('database', 'access_key', default=None)
     secret_key = config.get('database', 'secret_key', default=None)
     bucket = config.get('database', 'bucket')
     client = boto3.client(
         's3',
+        endpoint_url=endpoint_url,
         aws_access_key_id=access_key,
         aws_secret_access_key=secret_key,
     )
